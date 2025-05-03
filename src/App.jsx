@@ -8,6 +8,7 @@ import RegisterDoctor from "./pages/RegisterDoctor"
 import RegisterAdmin from "./pages/RegisterAdmin"
 import { useEffect, useState } from "react"
 import { checkAdminExists } from "./utils/checkAdmin"
+import { ToastContainer } from "react-toastify"
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -43,6 +44,7 @@ function App() {
           <Route path="/register-doctor" element={<RegisterDoctor/>}/>
         </Route>
       </Routes>
+      <ToastContainer/>
     </BrowserRouter>
   )
 }

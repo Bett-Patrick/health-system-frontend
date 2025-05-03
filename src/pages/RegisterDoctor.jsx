@@ -1,10 +1,10 @@
 import { useState } from "react";
 import axios from "../axios/axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const RegisterDoctor = () => {
   const [formData, setFormData] = useState({ username: "", email: "", password: "" });
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -14,10 +14,9 @@ const RegisterDoctor = () => {
     e.preventDefault();
     try {
       await axios.post("/register-doctor", formData);
-      alert("Doctor registered successfully");
-      navigate("/"); // go to login
+      toast.success("Doctor registered successfully");
     } catch (err) {
-      alert(err.response?.data?.message || "Registration failed");
+      toast.error(err.response?.data?.message || "Registration failed");
     }
   };
 

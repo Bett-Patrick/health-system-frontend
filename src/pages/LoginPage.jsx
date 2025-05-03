@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "../axios/axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -25,7 +26,7 @@ const LoginPage = () => {
      
     } catch (err) {
       console.log(err.message)
-      alert(err.response?.data?.message || "Invalid credentials");
+      toast.error(err.response?.data?.message || "Invalid credentials");
     }
   };
 
