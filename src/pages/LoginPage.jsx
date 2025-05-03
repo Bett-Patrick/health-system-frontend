@@ -23,16 +23,19 @@ const LoginPage = () => {
       const { token, user } = res.data;
 
       login(token, user.role, user); // Store the role in context
-      setLoading(false)
+      
       // Redirect based on role
       if (user.role === "admin") {
+        toast.success(`Welcome, ${user.username} Logged in successfully.`)
         navigate("/admin/dashboard");
       } else if (user.role === "doctor") {
+        toast.success(`Welcome, ${user.username} Logged in successfully.`)
         navigate("/doctor/dashboard");
       }
     } catch (err) {
       console.log(err.message);
       toast.error(err.response?.data?.message || "Invalid credentials");
+      setLoading(false)
     }
   };
 
